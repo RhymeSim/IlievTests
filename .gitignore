@@ -1,0 +1,13 @@
+# Network File System
+.nfs*
+
+# Generated text files/logfiles
+*.txt
+*.log
+*.err
+
+# Chombo files
+*.h5
+
+# Apple Desktop Services Store
+*DS_Store

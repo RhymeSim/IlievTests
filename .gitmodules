@@ -1,0 +1,3 @@
+[submodule "radamesh-hydro"]
+	path = radamesh-hydro
+	url = git@gitlab.com:radamesh-org/radamesh-hydro.git
