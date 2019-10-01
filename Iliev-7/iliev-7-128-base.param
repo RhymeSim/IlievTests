@@ -1,0 +1,113 @@
+ActualRun = .true.
+NSpecies = 1
+
+#runtime
+VersionID = ILIEV-7-128-%VERSION%
+Verbosity = 2
+TimeStepFact = 0.05
+ClumpingFactor = 1.
+
+#cosmology
+OmegaBaryonNow = 0.04825
+OmegaCDMNow = 0.307
+OmegaLambdaNow = 0.693
+HubbleConstNow = 67.77
+
+#ic
+InitialRedshift = 0.0
+InitialSimTime = 0.0
+SimulationTime = 50 # Myr
+
+DoInitEvol = .true.
+InitCollEq = .true.
+InitUVBEq = .false.
+UVB_SS = .false.
+KeepBKG = .false.
+# CaseA = .true.
+
+NSources = 1
+SourceCoords = -10.0001, 0.5001, 0.5001
+SpectrumType = 1
+TotalIonRate = 53.78051831433521
+SpectrumSlope = 1.7
+OpAngle = 0.0
+
+LightSpeedLimit = .false.
+
+InitHIIradius = 11.20 # MaxDist
+
+NSpectralRegions  = 1
+NSpectralBins = 50
+LinearSpcBins = .true.
+MinMaxEnergy = 1 10
+
+NRays = 5
+MaxTau = 50 50 50
+
+# NOutputs = 1
+NTimeSteps = %NTSTEPS%
+OutputFreqStep = %OUTPUTFREQ%
+
+
+# Rhyme Parameters
+
+# **Initial Condition**
+ic_type = simple
+
+ic_grid = 128 128 128
+ic_box_lengths = 6.6 6.6 6.6 "kpc"
+ic_nlevels = 1
+
+
+# **Runtime options**
+max_nboxes = 1
+
+
+# **Internal Units**
+density_unit = "m_H / cm^3"
+length_unit = "Mpc"
+time_unit = "Myr"
+
+
+# **Boundary Conditions**
+left_bc = outflow
+right_bc = outflow
+bottom_bc = outflow
+top_bc = outflow
+back_bc = outflow
+front_bc = outflow
+
+
+# **Thermodynamics**
+ideal_gas_type = monatomic
+
+
+# **CFL**
+courant_number = 8d-1
+
+
+# **Exact Riemann Solver**
+pressure_floor = 1.d-10
+tolerance = 1.d-6
+n_iteration = 100
+
+
+# **Slope Limiter**
+slope_limiter = minmod
+slope_limiter_omega = 0.d0
+
+
+# **MUSCL-Hancock solver**
+solver_type = memory_intensive
+
+
+# **Drawing**
+canvas = uniform 2.d-4 0.d0 0.d0 0.d0 1.389585607d-14
+
+shape = sphere 5.d0 3.3 3.3 0.8 %SMOOTHINGKPC% 'kpc'
+shape_filling = uniform absolute 0.04d0 0.d0 0.d0 0.d0 1.389585607d-14 2.d-4 0.d0 0.d0 0.d0 1.389585607d-14
+
+
+# **Chombo Output**
+prefix = './iliev-7-128-%VERSION%'
+nickname = 'iliev-7-128-%VERSION%'
