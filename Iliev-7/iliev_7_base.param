@@ -2,7 +2,7 @@ ActualRun = .true.
 NSpecies = 1
 
 #runtime
-VersionID = ILIEV-7-128-%VERSION%
+VersionID = ILIEV-7-128-%VERSION%-%SMOOTHING_KPC%
 Verbosity = 2
 TimeStepFact = 0.05
 ClumpingFactor = 1.
@@ -45,7 +45,7 @@ NRays = 5
 MaxTau = 50 50 50
 
 # NOutputs = 1
-NTimeSteps = %NTSTEPS%
+NTimeSteps = %NSTEPS%
 OutputFreqStep = %OUTPUTFREQ%
 
 
@@ -104,10 +104,10 @@ solver_type = memory_intensive
 # **Drawing**
 canvas = uniform 2.d-4 0.d0 0.d0 0.d0 1.389585607d-14
 
-shape = sphere 5.d0 3.3 3.3 0.8 %SMOOTHINGKPC% 'kpc'
+shape = sphere 5.d0 3.3 3.3 0.8 %SMOOTHING_KPC% 'kpc'
 shape_filling = uniform absolute 0.04d0 0.d0 0.d0 0.d0 1.389585607d-14 2.d-4 0.d0 0.d0 0.d0 1.389585607d-14
 
 
 # **Chombo Output**
-prefix = './iliev-7-128-%VERSION%'
-nickname = 'iliev-7-128-%VERSION%'
+prefix = './iliev-7-128-%VERSION%-%SMOOTHING_KPC%'
+nickname = 'iliev-7-128-%VERSION%-%SMOOTHING_KPC%'
