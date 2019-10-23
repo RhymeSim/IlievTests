@@ -1,3 +1,6 @@
 [submodule "radamesh-hydro"]
 	path = radamesh-hydro
 	url = git@gitlab.com:radamesh-org/radamesh-hydro.git
+[submodule "py-rhyme"]
+	path = py-rhyme
+	url = git@gitlab.com:rhyme-org/py-rhyme.git

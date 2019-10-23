@@ -14,3 +14,7 @@
 
 # RadameshHydro output directory
 *-RadameshHydro
+
+# JupyterLab
+.ipynb_checkpoints
+Iliev-7/notebooks/iliev-7-128-*
