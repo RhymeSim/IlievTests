@@ -18,3 +18,10 @@
 # JupyterLab
 .ipynb_checkpoints
 Iliev-7/notebooks/iliev-7-128-*
+
+
+# VisIt
+visitlog.py
+
+# Old outputs
+*.old
