@@ -3,7 +3,7 @@ NSpecies = 1
 
 #runtime
 VersionID = ILIEV-7-128-%VERSION%-%SMOOTHING_KPC%
-Verbosity = 2
+Verbosity = 3
 TimeStepFact = 0.05
 ClumpingFactor = 1.
 

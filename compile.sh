@@ -31,13 +31,13 @@ main () {
 
   # Replace HFrac & HeFrac placeholder
   global_module='src/radamesh/src/GlobalModule.f90'
-  global_module_mk='src/radamesh/src/GlobalModule.f90.mk'
+  global_module_md='src/radamesh/src/GlobalModule.f90.md'
 
   ## Take a backup from original GlobalModule file
-  if [[ -f ${global_module_mk} ]]; then
-    cp ${global_module_mk} ${global_module}
+  if [[ -f ${global_module_md} ]]; then
+    cp ${global_module_md} ${global_module}
   else
-    cp ${global_module} ${global_module_mk}
+    cp ${global_module} ${global_module_md}
   fi
 
   ## Replacing HFrac & HeFrac
@@ -47,13 +47,13 @@ main () {
   sed -i "s/<dHeFrac>/${HeFrac}/g" ${global_module}
 
   ## Pringing changes
-  colordiff ${global_module_mk} ${global_module}
+  colordiff ${global_module_md} ${global_module}
 
 
   # Building RadameshHydro
   mkdir -pv build
   cd build
-  cmake .. && make && ctest --timeout 10 --output-on-failure
+  cmake .. && make # && ctest --timeout 10 --output-on-failure
 
 
   # Renaming the executable
