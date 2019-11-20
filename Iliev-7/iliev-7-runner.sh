@@ -66,7 +66,7 @@ function main () {
   colordiff ${wd}/${NOTEBOOD_DIR}/${NOTEBOOD_FILE} ./${NOTEBOOD_ANALYSIS_DIR}/${NOTEBOOD_FILE} >&2
 
   # Executing the simulation
-  # time ${exe} ${param_file} | tee -a ${log_file}
+  time ${exe} ./${param_file} | tee -a ./${log_file}
 
   cd ${wd}
 }
