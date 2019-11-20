@@ -25,3 +25,6 @@ visitlog.py
 
 # Old outputs
 *.old
+
+# Notebooks
+notebook-analysis

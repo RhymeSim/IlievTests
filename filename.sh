@@ -4,6 +4,9 @@
 FILENAME_VERSION='V1'
 
 RADAMESH_HYDRO_BASE_NAME='RadameshHydro_omp_3d'
+NOTEBOOD_ANALYSIS_DIR='notebook-analysis'
+NOTEBOOD_DIR='notebooks-markdown'
+NOTEBOOD_FILE='iliev_7_report.ipynb'
 
 
 declare -A ext=(
