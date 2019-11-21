@@ -1,48 +1,52 @@
 #!/bin/bash
 
 source ./../filename.sh
+source ./../logging.sh
 
 
 ILIEV_7_BASE_PARAM='./iliev_7_base.param'
 
 
-function iliev_7_usage () {
+function iliev_7_usage() {
   echo ''
   echo 'USAGE: ./iliev-7-runner.sh version smoothing_kpc [nsteps [output_freq]]'
   echo '       ./iliev-7-runner.sh smooth_100pc 0.1 2000 10'
 }
 
 
-function main () {
+function main() {
   if [[ -n "$1" ]]; then version=$1; else "$(iliev_7_usage)"; exit; fi
   if [[ -n "$2" ]]; then smoothing_kpc=$2; else "$(iliev_7_usage)"; exit; fi
-  if [[ -n "$3" ]]; then nsteps=$3; else nsteps=1000; fi
+  if [[ -n "$3" ]]; then nsteps=$3; else nsteps=1600; fi
   if [[ -n "$4" ]]; then output_freq=$4; else output_freq=5; fi
 
-  echo "version: ${version}"
-  echo "smoothing_kpc: ${smoothing_kpc} [kpc]"
-  echo "nsteps: ${nsteps}"
-  echo "output_freq: ${output_freq}"
+  log ${version} 'Version'
+  log ${smoothing_kpc} 'Smoothing' 'kpc'
+  log ${nsteps} 'Number of Steps'
+  log ${output_freq} 'Output Frequency'
 
   # Storring current working directory
-  wd=$(pwd)
+  local wd=$(pwd)
 
-  # Creting and entering the output directory
+  # Creting the output directory
   local output_rhyme_files_dir="iliev-7-128-${version}-${smoothing_kpc}"
   local output_dir="iliev-7-128-${version}-${smoothing_kpc}-RadameshHydro"
-  mkdir -p ${output_dir} && cd ${output_dir}
+  mkdir -p ${output_dir}
 
-  echo "output_dir: ${output_dir}"
+  log ${output_dir} 'Output Directory'
+
+  log 'Entering Output directory'
+  cd ${output_dir}
 
 
   # Generating filenames
-  local param_file=$(iliev_param_file 7 ${version} ${smoothing_kpc} ${nsteps} ${output_freq} )
+  local param_file=$(iliev_param_file 7 ${nsteps} ${output_freq} ${version} ${smoothing_kpc} )
   local log_file=$(iliev_log_file ${param_file})
   local exe="${wd}/../radamesh-hydro/build/$(radamesh_hydro_exe 1d0 0d0)"
 
-  echo "param_file: ${param_file}"
-  echo "log_file: ${log_file}"
-  echo "exe: ${exe}"
+  log ${param_file} 'Parameter File'
+  log ${log_file} 'Log File'
+  log ${exe} 'Executable name'
 
 
   # Updating paramfile
@@ -54,6 +58,7 @@ function main () {
   sed -i "s/%OUTPUTFREQ%/${output_freq}/g" ./${param_file}
 
   ## Printing changes in paramfile
+  log 'Param file changes'
   colordiff ${wd}/${ILIEV_7_BASE_PARAM} ./${param_file} >&2
 
 
