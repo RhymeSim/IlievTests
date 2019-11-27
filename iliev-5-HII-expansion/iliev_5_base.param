@@ -4,7 +4,7 @@ NSpecies = 1
 #runtime
 VersionID = ILIEV-5-128-%NSTEPS%-%OUTPUTFREQ%
 Verbosity = 3
-TimeStepFact = 0.05
+TimeStepFact = 0.005
 ClumpingFactor = 1.
 
 #cosmology
@@ -34,7 +34,7 @@ OpAngle = 0d0
 
 LightSpeedLimit = .false.
 
-InitHIIradius = 1d-4 # MaxDist
+InitHIIradius = 1d-1 # MaxDist
 
 NSpectralRegions  = 1
 NSpectralBins = 50
@@ -83,7 +83,7 @@ ideal_gas_type = monatomic
 
 
 # **CFL**
-courant_number = 8d-1
+courant_number = 5d-2
 
 
 # **Exact Riemann Solver**
@@ -102,7 +102,7 @@ solver_type = memory_intensive
 
 
 # **Drawing**
-canvas = uniform 1d-3 0d0 0d0 0d0 2.93215E-92 # p = 10^-1 kB
+canvas = uniform 1d-3 0d0 0d0 0d0 1.737024e-15 # p = 10^-1 kB / amu
 
 
 # **Chombo Output**
