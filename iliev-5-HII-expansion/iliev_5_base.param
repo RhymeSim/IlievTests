@@ -34,7 +34,8 @@ OpAngle = 0d0
 
 LightSpeedLimit = .false.
 
-InitHIIradius = 1d-1 # MaxDist
+InitHIIradius = 1e-1 # MaxDist
+FixTemp = 1e2
 
 NSpectralRegions  = 1
 NSpectralBins = 50
@@ -70,11 +71,11 @@ time_unit = "Myr"
 
 
 # **Boundary Conditions**
-left_bc = reflective
+left_bc = outflow
 right_bc = outflow
-bottom_bc = reflective
+bottom_bc = outflow
 top_bc = outflow
-back_bc = reflective
+back_bc = outflow
 front_bc = outflow
 
 
