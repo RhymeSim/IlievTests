@@ -35,6 +35,7 @@ OpAngle = 0d0
 LightSpeedLimit = .false.
 
 InitHIIradius = 1e-1 # MaxDist
+InitHIITemp = 1e4
 FixTemp = 1e2
 
 NSpectralRegions  = 1
