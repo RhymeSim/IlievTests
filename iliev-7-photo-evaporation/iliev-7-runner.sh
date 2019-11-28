@@ -29,8 +29,8 @@ function main() {
   local wd=$(pwd)
 
   # Creting the output directory
-  local output_rhyme_files_dir="iliev-7-128-${version}-${smoothing_kpc}"
-  local output_dir="iliev-7-128-${version}-${smoothing_kpc}-RadameshHydro"
+  local output_rhyme_files_dir=$(iliev_output_files_dir 7 ${version} ${nsteps} ${output_freq} ${smoothing_kpc})
+  local output_dir=$(iliev_output_dir 7 ${version} ${nsteps} ${output_freq} ${smoothing_kpc})
   mkdir -p ${output_dir}
 
   log ${output_dir} 'Output Directory'
@@ -40,7 +40,7 @@ function main() {
 
 
   # Generating filenames
-  local param_file=$(iliev_param_file 7 ${nsteps} ${output_freq} ${version} ${smoothing_kpc} )
+  local param_file=$(iliev_param_file 7 ${version} ${nsteps} ${output_freq} ${smoothing_kpc} )
   local log_file=$(iliev_log_file ${param_file})
   local exe="${wd}/../radamesh-hydro/build/$(radamesh_hydro_exe 1d0 0d0)"
 

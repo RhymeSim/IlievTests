@@ -2,7 +2,7 @@ ActualRun = .true.
 NSpecies = 1
 
 #runtime
-VersionID = ILIEV-5-128-%NSTEPS%-%OUTPUTFREQ%
+VersionID = ILIEV-6-128-%VERSION%-%NSTEPS%-%OUTPUTFREQ%
 Verbosity = 3
 TimeStepFact = 0.005
 ClumpingFactor = 1.
@@ -16,7 +16,7 @@ HubbleConstNow = 67.77
 #ic
 InitialRedshift = 0.0
 InitialSimTime = 0.0
-SimulationTime = 500 # Myr
+SimulationTime = 75 # Myr
 
 DoInitEvol = .false.
 InitCollEq = .false.
@@ -26,15 +26,15 @@ KeepBKG = .false.
 CaseA = .false.
 
 NSources = 1
-SourceCoords = 1d-4, 1d-4, 1d-4
+SourceCoords = -1d-4, -1d-4, -1d-4
 SpectrumType = 2 # Black body @ 10^5 K
-BlackBodyTemp = 100000
-TotalIonRate = 48.69897000433602 # 5 x 10^48 s^-1
+BlackBodyTemp = 1e5
+TotalIonRate = 50 # 10^50 s^-1
 OpAngle = 0d0
 
 LightSpeedLimit = .false.
 
-InitHIIradius = 1e-1 # MaxDist
+InitHIIradius = 2 # MaxDist
 InitHIITemp = 1e4
 FixTemp = 1e2
 
@@ -57,7 +57,7 @@ OutputFreqStep = %OUTPUTFREQ%
 ic_type = simple
 
 ic_grid = 128 128 128
-ic_box_lengths = 15 15 15 "kpc"
+ic_box_lengths = .8 .8 .8 "kpc"
 ic_nlevels = 1
 
 
@@ -72,11 +72,11 @@ time_unit = "Myr"
 
 
 # **Boundary Conditions**
-left_bc = outflow
+left_bc = reflective
 right_bc = outflow
-bottom_bc = outflow
+bottom_bc = reflective
 top_bc = outflow
-back_bc = outflow
+back_bc = reflective
 front_bc = outflow
 
 
@@ -104,9 +104,10 @@ solver_type = memory_intensive
 
 
 # **Drawing**
-canvas = uniform 1d-3 0d0 0d0 0d0 1.737024e-15 # p = 10^-1 kB / amu
+# TODO: Inverse radius squared density profile
+#       n0 = 3.2 cm^-3, r0 = 91.5pc, XHI0 = 0
 
 
 # **Chombo Output**
-prefix = './iliev-5-128-%NSTEPS%-%OUTPUTFREQ%'
-nickname = 'iliev-5-128-%NSTEPS%-%OUTPUTFREQ%'
+prefix = './iliev-6-128-%VERSION%-%NSTEPS%-%OUTPUTFREQ%'
+nickname = 'iliev-6-128-%VERSION%-%NSTEPS%-%OUTPUTFREQ%'

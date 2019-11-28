@@ -9,14 +9,15 @@ ILIEV_5_BASE_PARAM='./iliev_5_base.param'
 
 function iliev_5_usage() {
   echo ''
-  echo 'USAGE: ./iliev-5-runner.sh [nsteps [output_freq]]'
-  echo '       ./iliev-5-runner.sh 2000 10'
+  echo 'USAGE: ./iliev-5-runner.sh version [nsteps [output_freq]]'
+  echo '       ./iliev-5-runner.sh reflective_bc 2000 10'
 }
 
 
 function main() {
-  if [[ -n "$1" ]]; then nsteps=$1; else "$(iliev_7_usage)"; exit; fi
-  if [[ -n "$2" ]]; then output_freq=$2; else "$(iliev_7_usage)"; exit; fi
+  if [[ -n "$1" ]]; then version=$1; else "$(iliev_7_usage)"; exit; fi
+  if [[ -n "$2" ]]; then nsteps=$2; else "$(iliev_7_usage)"; exit; fi
+  if [[ -n "$3" ]]; then output_freq=$3; else "$(iliev_7_usage)"; exit; fi
 
   log ${nsteps} 'Number of Steps'
   log ${output_freq} 'Output Frequency'
@@ -26,8 +27,8 @@ function main() {
 
 
   # Creating the output directory
-  local output_rhyme_files_dir="iliev-5-128-${nsteps}-${output_freq}"
-  local output_dir="iliev-5-128-${nsteps}-${output_freq}-RadameshHydro"
+  local output_rhyme_files_dir=$(iliev_output_files_dir 5 ${version} ${nsteps} ${output_freq})
+  local output_dir=$(iliev_output_dir 5 ${version} ${nsteps} ${output_freq})
   mkdir -p ${output_dir}
 
   log ${output_dir} 'Output directory'
@@ -36,7 +37,7 @@ function main() {
   cd ${output_dir}
 
   # Generating filenames
-  local param_file=$(iliev_param_file 5 ${nsteps} ${output_freq} )
+  local param_file=$(iliev_param_file 5 ${version} ${nsteps} ${output_freq} )
   local log_file=$(iliev_log_file ${param_file})
   local exe="${wd}/../radamesh-hydro/build/$(radamesh_hydro_exe 1d0 0d0)"
 
@@ -47,6 +48,7 @@ function main() {
   # Updating paramfile
   cp ${wd}/${ILIEV_5_BASE_PARAM} ./${param_file}
 
+  sed -i "s/%VERSION%/${version}/g" ./${param_file}
   sed -i "s/%NSTEPS%/${nsteps}/g" ./${param_file}
   sed -i "s/%OUTPUTFREQ%/${output_freq}/g" ./${param_file}
 
