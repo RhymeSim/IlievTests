@@ -26,22 +26,22 @@ KeepBKG = .false.
 CaseA = .false.
 
 NSources = 1
-SourceCoords = -1d-4, -1d-4, -1d-4
+SourceCoords = -0.015625 -0.015625 0e0 # -2px
 SpectrumType = 2 # Black body @ 10^5 K
 BlackBodyTemp = 1e5
 TotalIonRate = 48.69897000433602 # 5 x 10^48 s^-1
 OpAngle = 0d0
 
-LightSpeedLimit = .true.
+LightSpeedLimit = .false.
 
 InitHIIradius = 2 # MaxDist
+SafetyDist = 2
 InitHIITemp = 1e4
 FixTemp = 1e2
 
-NSpectralRegions  = 1
-NSpectralBins = 50
-LinearSpcBins = .true.
-MinMaxEnergy = 1 10
+NSpectralRegions  = 3
+NSpectralBins = 10 10 10
+MinMaxEnergy = 1 1.8 1.8 4 4 10
 
 NRays = 5
 MaxTau = 50 50 50
