@@ -21,7 +21,7 @@ main () {
 
   # Pulling new changes
   git pull origin master
-  git submodule update --init
+#   git submodule update --init
 
 
   # Updating radamesh-hydro
