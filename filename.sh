@@ -3,36 +3,45 @@
 
 FILENAME_VERSION='V2'
 
-RADAMESH_HYDRO_BASE_NAME='RadameshHydro_omp_3d'
-NOTEBOOD_ANALYSIS_DIR='notebook-analysis'
-NOTEBOOD_DIR='notebooks-markdown'
+RADAMESH_HYDRO_BASE_NAME="RhymeRadamesh_omp_3d_$(date +'%Y%m%d')"
+NOTEBOOD_ANALYSIS_DIR='analysis'
+NOTEBOOD_DIR='notebooks'
 NOTEBOOD_FILE='iliev_7_report.ipynb'
+RHYME_RADAMESH_DIR='RhymeRadamesh'
+EXECUTABLES_DIR='executables'
 
 
 declare -A ext=(
   ['chombo']='.chombo.h5'
   ['param']='.param.txt'
   ['log']='.log.txt'
-  ['RadameshHydro']='-RadameshHydro'
+  ['RhymeRadamesh']='-RhymeRadamesh'
 )
 
 
-radamesh_hydro_exe () {
+orig_radamesh_hydro_exe () {
   if [[ -n "$1" ]]; then local HFrac=$1; else exit; fi
   if [[ -n "$2" ]]; then local HeFrac=$2; else exit; fi
 
   echo "${RADAMESH_HYDRO_BASE_NAME}_H_${HFrac}_He_${HeFrac}"
 }
 
+radamesh_hydro_exe_wo_date () {
+  if [[ -n "$1" ]]; then local HFrac=$1; else exit; fi
+  if [[ -n "$2" ]]; then local HeFrac=$2; else exit; fi
+
+  echo "${RADAMESH_HYDRO_BASE_NAME%_*}_H_${HFrac}_He_${HeFrac}"
+}
+
 
 iliev_param_file () {
   if [[ -n "$1" ]]; then local test_number=$1; else exit; fi
-  if [[ -n "$2" ]]; then local version="_$2"; else exit; fi
+  if [[ -n "$2" ]]; then local version="$2"; else exit; fi
   if [[ -n "$3" ]]; then local nsteps=$3; else exit; fi
   if [[ -n "$4" ]]; then local output_freq=$4; else exit; fi
-  if [[ -n "$5" ]]; then local smoothing_kpc="_$5"; else smoothing_kpc=''; fi
+  if [[ -n "$5" ]]; then local smoothing_kpc="$5"; else smoothing_kpc=''; fi
 
-  basename=$(printf "%s_iliev_%d%s%s%s%s" \
+  basename=$(printf "param_%s_%d_%s_%s_%s_%s" \
     $(date "+%Y%m%d_%H%M") \
     ${version} \
     ${version} \
@@ -53,12 +62,12 @@ iliev_log_file () {
 
 iliev_output_files_dir () {
   if [[ -n "$1" ]]; then local test_number=$1; else exit; fi
-  if [[ -n "$2" ]]; then local version="-$2"; else exit; fi
-  if [[ -n "$3" ]]; then local nsteps="-$3"; else exit; fi
-  if [[ -n "$4" ]]; then local output_freq="-$4"; else exit; fi
-  if [[ -n "$5" ]]; then local smoothing_kpc="-$5"; else smoothing_kpc=''; fi
+  if [[ -n "$2" ]]; then local version="$2"; else exit; fi
+  if [[ -n "$3" ]]; then local nsteps="$3"; else exit; fi
+  if [[ -n "$4" ]]; then local output_freq="$4"; else exit; fi
+  if [[ -n "$5" ]]; then local smoothing_kpc="$5"; else smoothing_kpc=''; fi
 
-  basename=$(printf "iliev-%d-128%s%s%s%s" \
+  basename=$(printf "output-%d-128-%s-%s-%s-%s" \
     ${test_number} \
     ${version} \
     ${nsteps} \
@@ -77,12 +86,12 @@ iliev_output_dir () {
   if [[ -n "$5" ]]; then local smoothing_kpc="-$5"; else smoothing_kpc=''; fi
 
   # TODO: Use iliev_base_output_dir
-  basename=$(printf "iliev-%d-128%s%s%s%s" \
+  basename=$(printf "iliev-%d-128-%s-%s-%s-%s" \
     ${test_number} \
     ${version} \
     ${nsteps} \
     ${output_freq} \
     ${smoothing_kpc})
 
-  echo "${basename}${ext['RadameshHydro']}"
+  echo "${basename}${ext['RhymeRadamesh']}"
 }

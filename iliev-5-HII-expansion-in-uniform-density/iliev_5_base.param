@@ -53,6 +53,20 @@ OutputFreqStep = %OUTPUTFREQ%
 
 # Rhyme Parameters
 
+# **Logging**
+unicode_plotting = enable
+projection_axis = z
+pseudocolor_layer = 64
+colormap = viridis
+
+# **Report**
+report_pseudocolor = rho
+report_pseudocolor = temp
+report_frequency = 100  # steps
+
+# **Sanity Check**
+sanity_check = disable
+
 # **Initial Condition**
 ic_type = simple
 
@@ -88,8 +102,10 @@ ideal_gas_type = monatomic
 courant_number = 2d-1
 
 
-# **Exact Riemann Solver**
-pressure_floor = 1.d-10
+# **Riemann Solver**
+riemann_solver = ExactRS
+vacuum_pressure = 1.d-10
+vacuum_density = 0d0
 tolerance = 1.d-6
 n_iteration = 100
 
@@ -103,10 +119,24 @@ slope_limiter_omega = 0.d0
 solver_type = memory_intensive
 
 
+# **Chemistry**
+elements = H He
+element_abundances = 1d0 0d0
+
+
+# **Ionization Equilibrium**
+uvb_equilibrium = disable
+
+
 # **Drawing**
-canvas = uniform 1d-3 0d0 0d0 0d0 1.737024e-15 # p = 10^-1 kB / amu
+canvas = uniform 1d-3 0d0 0d0 0d0 1.737024e-15 1d3 0d0 0d0 1d0 # p = 10^-1 kB / amu
+
+
+# **Stabilizer**
+stabilizer = disable
 
 
 # **Chombo Output**
-prefix = './iliev-5-128-%VERSION%-%NSTEPS%-%OUTPUTFREQ%'
-nickname = 'iliev-5-128-%VERSION%-%NSTEPS%-%OUTPUTFREQ%'
+chombo_prefix = './iliev-5-128-%VERSION%-%NSTEPS%-%OUTPUTFREQ%'
+chombo_nickname = 'iliev-5-128-%VERSION%-%NSTEPS%-%OUTPUTFREQ%'
+chombo_output_every = %OUTPUTFREQ%

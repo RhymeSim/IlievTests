@@ -15,9 +15,9 @@ function iliev_5_usage() {
 
 
 function main() {
-  if [[ -n "$1" ]]; then version=$1; else "$(iliev_7_usage)"; exit; fi
-  if [[ -n "$2" ]]; then nsteps=$2; else "$(iliev_7_usage)"; exit; fi
-  if [[ -n "$3" ]]; then output_freq=$3; else "$(iliev_7_usage)"; exit; fi
+  if [[ -n "$1" ]]; then version=$1; else "$(iliev_6_usage)"; exit; fi
+  if [[ -n "$2" ]]; then nsteps=$2; else "$(iliev_6_usage)"; exit; fi
+  if [[ -n "$3" ]]; then output_freq=$3; else "$(iliev_6_usage)"; exit; fi
 
   log ${nsteps} 'Number of Steps'
   log ${output_freq} 'Output Frequency'
@@ -39,7 +39,7 @@ function main() {
   # Generating filenames
   local param_file=$(iliev_param_file 5 ${version} ${nsteps} ${output_freq} )
   local log_file=$(iliev_log_file ${param_file})
-  local exe="${wd}/../radamesh-hydro/build/$(radamesh_hydro_exe 1d0 0d0)"
+  local exe="${wd}/../$EXECUTABLES_DIR/$(radamesh_hydro_exe_wo_date 1d0 0d0)"
 
   log ${param_file} 'Parameter File'
   log ${log_file} 'Log File'

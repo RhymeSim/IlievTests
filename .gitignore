@@ -19,7 +19,6 @@
 .ipynb_checkpoints
 Iliev-7/notebooks/iliev-7-128-*
 
-
 # VisIt
 visitlog.py
 
@@ -28,3 +27,11 @@ visitlog.py
 
 # Notebooks
 notebook-analysis
+
+# Executables
+executables
+
+# Outputs
+iliev-5-HII-expansion-in-uniform-density/output-
+iliev-6-HII-expansion-innverse-radius-squared-density-profile/output-
+iliev-7-photo-evaporation/output-

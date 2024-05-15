@@ -42,7 +42,7 @@ function main() {
   # Generating filenames
   local param_file=$(iliev_param_file 7 ${version} ${nsteps} ${output_freq} ${smoothing_kpc} )
   local log_file=$(iliev_log_file ${param_file})
-  local exe="${wd}/../radamesh-hydro/build/$(radamesh_hydro_exe 1d0 0d0)"
+  local exe="${wd}/../$EXECUTABLES_DIR/$(radamesh_hydro_exe_wo_date 1d0 0d0)"
 
   log ${param_file} 'Parameter File'
   log ${log_file} 'Log File'
